@@ -7,4 +7,4 @@ import { axios } from '@/utils';
 // export const test = params => axios.get('/', params);
 
 /*登录*/
-export const loginInit = params => axios.post('/oauth-server/auth/sys/login', params);
+export const loginInit = params => axios.post('url', params);
