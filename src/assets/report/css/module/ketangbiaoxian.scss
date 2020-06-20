@@ -1,0 +1,258 @@
+/**
+ * 课堂表现
+ */
+.m-ktbx {
+
+    margin-bottom: 60px;
+
+    .g-panel-content {
+        padding: 50px 60px 10px 60px;
+        background-color: #FFFFFF;
+    }
+
+    .decorate01 {
+        right: 0;
+        bottom: 0;
+        width: 160px;
+        height: 128px;
+        //background: url(../../images/teaching_describe02.png) 0 0 no-repeat;
+        background: url(../../assets/report/images/teaching_describe02.png) 0 0 no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .label-txt {
+        margin-right: 20px;
+        color: #16114a;
+        font-size: 16px;
+    }
+
+    .list-pre {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px dotted #eeeffc;
+
+        .list-pre-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 50%;
+            margin-bottom: 30px;
+        }
+    }
+
+    // 星星
+    .star-list {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        // 选中状态
+        &.active1 {
+            .s1 {
+                //background: url(../../images/star_selected.png) 0 0 no-repeat;
+                background: url(../../assets/report/images/star_selected.png) 0 0 no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+
+        &.active2 {
+            .s1 {
+                //background: url(../../images/star_selected.png) 0 0 no-repeat;
+                background: url(../../assets/report/images/star_selected.png) 0 0 no-repeat;
+                background-size: 100% 100%;
+            }
+
+            .s2 {
+                //background: url(../../images/star_selected.png) 0 0 no-repeat;
+                background: url(../../assets/report/images/star_selected.png) 0 0 no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+
+        &.active3 {
+            .s1 {
+                //background: url(../../images/star_selected.png) 0 0 no-repeat;
+                background: url(../../assets/report/images/star_selected.png) 0 0 no-repeat;
+                background-size: 100% 100%;
+            }
+
+            .s2 {
+                //background: url(../../images/star_selected.png) 0 0 no-repeat;
+                background: url(../../assets/report/images/star_selected.png) 0 0 no-repeat;
+                background-size: 100% 100%;
+            }
+
+            .s3 {
+                //background: url(../../images/star_selected.png) 0 0 no-repeat;
+                background: url(../../assets/report/images/star_selected.png) 0 0 no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+
+        &.active4 {
+            .s1 {
+                //background: url(../../images/star_selected.png) 0 0 no-repeat;
+                background: url(../../assets/report/images/star_selected.png) 0 0 no-repeat;
+                background-size: 100% 100%;
+            }
+
+            .s2 {
+                //background: url(../../images/star_selected.png) 0 0 no-repeat;
+                background: url(../../assets/report/images/star_selected.png) 0 0 no-repeat;
+                background-size: 100% 100%;
+            }
+
+            .s3 {
+                //background: url(../../images/star_selected.png) 0 0 no-repeat;
+                background: url(../../assets/report/images/star_selected.png) 0 0 no-repeat;
+                background-size: 100% 100%;
+            }
+
+            .s4 {
+                //background: url(../../images/star_selected.png) 0 0 no-repeat;
+                background: url(../../assets/report/images/star_selected.png) 0 0 no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+
+        &.active5 {
+            .s1 {
+                //background: url(../../images/star_selected.png) 0 0 no-repeat;
+                background: url(../../assets/report/images/star_selected.png) 0 0 no-repeat;
+                background-size: 100% 100%;
+            }
+
+            .s2 {
+                //background: url(../../images/star_selected.png) 0 0 no-repeat;
+                background: url(../../assets/report/images/star_selected.png) 0 0 no-repeat;
+                background-size: 100% 100%;
+            }
+
+            .s3 {
+                //background: url(../../images/star_selected.png) 0 0 no-repeat;
+                background: url(../../assets/report/images/star_selected.png) 0 0 no-repeat;
+                background-size: 100% 100%;
+            }
+
+            .s4 {
+                //background: url(../../images/star_selected.png) 0 0 no-repeat;
+                background: url(../../assets/report/images/star_selected.png) 0 0 no-repeat;
+                background-size: 100% 100%;
+            }
+
+            .s5 {
+                //background: url(../../images/star_selected.png) 0 0 no-repeat;
+                background: url(../../assets/report/images/star_selected.png) 0 0 no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+
+        > li {
+            width: 32px;
+            height: 31px;
+            margin-right: 10px;
+            //background: url(../../images/star_normal.png) 0 0 no-repeat;
+            background: url(../../assets/report/images/star_normal.png) 0 0 no-repeat;
+            background-size: 100% 100%;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    // 课堂情况
+    .course-situation {
+        padding: 30px 0;
+
+        > a {
+            display: inline-block;
+            width: 80px;
+            height: 36px;
+            margin-right: 10px;
+            font-size: 14px;
+            text-align: center;
+            line-height: 36px;
+            background-color: #eeeffc;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &.active {
+                width: 96px;
+                height: 40px;
+                color: #FFFFFF;
+                font-size: 16px;
+                line-height: 40px;
+                background-color: #5244dd;
+            }
+        }
+    }
+}
+
+// 手机模式
+@media screen and (min-width: 320px) and (max-width: 420px) {
+    .m-ktbx {
+
+        margin-bottom: 25px;
+
+
+        .decorate01 {
+            width: 1.60rem;
+            height: 1.28rem;
+            background-size: 100% 100%;
+        }
+
+        .g-panel-content {
+            padding: 20px 10px;
+        }
+
+        .label-txt {
+            font-size: 13px;
+            margin-right: 10px;
+        }
+
+        .list-pre {
+            .list-pre-item {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+
+        .star-list {
+            > li {
+                width: 0.32rem;
+                height: 0.31rem;
+            }
+        }
+
+        .course-situation {
+            padding: 15px 0 0 0;
+
+            > a {
+                width: auto;
+                height: auto;
+                padding: 4px 6px;
+                line-height: 1;
+                font-size: 13px;
+                margin-bottom: 10px;
+                margin-right: 6px;
+
+                &.active {
+                    width: auto;
+                    height: auto;
+                    line-height: 1;
+                    font-size: 14px;
+                    padding: 4px 6px;
+                }
+            }
+        }
+    }
+}

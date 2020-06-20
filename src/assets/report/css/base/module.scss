@@ -1,0 +1,19 @@
+.g-module {
+    position: relative;
+    padding-left: 140px;
+    padding-right: 140px;
+}
+
+.g-bg-decorate {
+    position: absolute;
+}
+
+
+// 手机模式
+@media screen and (min-width: 320px) and (max-width: 420px) {
+    .g-module {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

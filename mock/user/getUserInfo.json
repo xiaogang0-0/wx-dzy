@@ -1,0 +1,46 @@
+{
+    "code": 0,
+    "message": "操作成功",
+    "data": {
+        "userInfo": {
+            "agency_id": 805,
+            "platform_name": "YKT_V2",
+            "user_id": "50198",
+            "user_token": "938474d02a396b35074f97a2ff3ab921",
+            "third_party_uid": "",
+            "token_date": "2018-10-11",
+            "access_token": "837ebf459130bdd7f9eaf3493dcf5f7446a979f3",
+            "create_at": "2018-10-11 15:00:25",
+            "update_at": "2018-10-11 15:00:25"
+        },
+        "platform": {
+            "app_key": "xiaoguan"
+        },
+        "user_token": "938474d02a396b35074f97a2ff3ab921",
+        "detail": {
+            "id": 50198,
+            "agency_id": 805,
+            "dept_id": 10008,
+            "mobile": "17600263408",
+            "gender_name": "男",
+            "gender": 1,
+            "real_name": "张琦",
+            "subject_list": [
+
+            ],
+            "sub_teacher_list": [
+
+            ],
+            "isTeachingDirector": 0
+        },
+        "agencyInfo": {
+            "id": 805,
+            "school_name": "11",
+            "questions_library_status": 2,
+            "logo": "",
+            "propaganda_name": "nasfasfab",
+            "teaching_attendance": 1,
+            "teaching_stu_phone": 1
+        }
+    }
+}

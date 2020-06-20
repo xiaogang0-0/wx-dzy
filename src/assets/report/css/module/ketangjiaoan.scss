@@ -1,0 +1,99 @@
+/**
+ * 课堂教案
+ */
+.m-teaching {
+
+    margin-bottom: 60px;
+    //background: url(../../images/teaching_describe01.png) 100% 21px no-repeat;
+    background: url(../../assets/report/images/teaching_describe01.png) 100% 21px no-repeat;
+
+    .decorate01 {
+        right: 0;
+        bottom: 0;
+        width: 160px;
+        height: 128px;
+        //background: url(../../images/teaching_describe02.png) 0 0 no-repeat;
+        background: url(../../assets/report/images/teaching_describe02.png) 0 0 no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .g-panel {
+        z-index: 10;
+    }
+
+    .g-panel-title {
+        .icon-rocket-l,
+        .icon-rocket-r {
+            vertical-align: middle;
+        }
+    }
+
+    .g-panel-bd {
+        background-color: #FFFFFF;
+    }
+
+    .g-panel-content {
+        min-height: 254px;
+        padding: 36px 60px 47px 60px;
+    }
+
+    .list-teach {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .list-teach-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 57px;
+        color: #363acc;
+        font-size: 16px;
+        border-bottom: 1px dotted #eeeffc;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        > i {
+            margin-top: 2px;
+        }
+
+        > span {
+            display: inline-block;
+            flex: 1;
+            margin-left: 18px;
+        }
+    }
+}
+
+
+// 手机模式
+@media screen and (min-width: 320px) and (max-width: 420px) {
+    .m-teaching {
+
+        margin-bottom: 25px;
+        background: none;
+
+        .decorate01 {
+            width: 1.60rem;
+            height: 1.28rem;
+        }
+
+        .g-panel-content {
+            min-height: auto;
+            padding: 20px 10px;
+        }
+
+        .list-teach-item {
+            height: auto;
+            padding: 10px 0;
+            font-size: 14px;
+
+            > span {
+                margin-left: 10px;
+            }
+        }
+    }
+}

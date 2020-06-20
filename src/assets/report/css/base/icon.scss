@@ -1,0 +1,147 @@
+// 知识点
+.icon-star {
+    display: inline-block;
+    width: 15px;
+    height: 14px;
+    //background: url(../../images/xingxing.svg) 0 0 no-repeat;
+    background: url('../../assets/report/images/xingxing.svg') 0 0 no-repeat;
+}
+
+.icon-point {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    //background: url(../../images/point.svg) 0 0 no-repeat;
+    background: url(../../assets/report/images/point.svg) 0 0 no-repeat;
+}
+
+// 课堂教案
+.icon-rocket-l {
+    display: inline-block;
+    width: 16px;
+    height: 18px;
+    //background: url(../../images/rocket-left.svg) 0 0 no-repeat;
+    background: url(../../assets/report/images/rocket-left.svg) 0 0 no-repeat;
+}
+
+.icon-rocket-r {
+    display: inline-block;
+    width: 16px;
+    height: 18px;
+    //background: url(../../images/rocket-right.svg) 0 0 no-repeat;
+    background: url(../../assets/report/images/rocket-right.svg) 0 0 no-repeat;
+}
+
+.icon-star-blue {
+    display: inline-block;
+    width: 16px;
+    height: 18px;
+    vertical-align: middle;
+    //background: url(../../images/star-blue.svg) 0 0 no-repeat;
+    background: url(../../assets/report/images/star-blue.svg) 0 0 no-repeat;
+}
+
+.icon-star-yell {
+    display: inline-block;
+    width: 16px;
+    height: 18px;
+    vertical-align: middle;
+    //background: url(../../images/star-yell.svg) 0 0 no-repeat;
+    background: url(../../assets/report/images/star-yell.svg) 0 0 no-repeat;
+}
+
+// word图标
+.icon-word {
+    display: inline-block;
+    width: 25px;
+    height: 29px;
+    //background: url(../../images/word.svg) 0 0 no-repeat;
+    background: url(../../assets/report/images/word.svg) 0 0 no-repeat;
+}
+
+// ppt图标
+.icon-ppt {
+    display: inline-block;
+    width: 25px;
+    height: 29px;
+    //background: url(../../images/ppt.svg) 0 0 no-repeat;
+    background: url(../../assets/report/images/ppt.svg) 0 0 no-repeat;
+}
+
+// pdf图标
+.icon-pdf {
+    display: inline-block;
+    width: 25px;
+    height: 29px;
+    //background: url(../../images/pdf.svg) 0 0 no-repeat;
+    background: url(../../assets/report/images/pdf.svg) 0 0 no-repeat;
+}
+
+// 试卷图标
+.icon-paper {
+    display: inline-block;
+    width: 25px;
+    height: 29px;
+    //background: url(../../images/paper.svg) 0 0 no-repeat;
+    background: url(../../assets/report/images/paper.svg) 0 0 no-repeat;
+}
+
+// 讲义图标
+.icon-lecture {
+    display: inline-block;
+    width: 25px;
+    height: 29px;
+    //background: url(../../images/lecture.svg) 0 0 no-repeat;
+    background: url(../../assets/report/images/lecture.svg) 0 0 no-repeat;
+}
+
+// 未知图标
+.icon-weizhi {
+    display: inline-block;
+    width: 25px;
+    height: 29px;
+    //background: url(../../images/weizhi.svg) 0 0 no-repeat;
+    background: url(../../assets/report/images/weizhi.svg) 0 0 no-repeat;
+}
+
+// 手机模式
+@media screen and (min-width: 320px) and (max-width: 420px) {
+
+    .icon-point {
+        width: 22px;
+        height: 22px;
+    }
+
+    .icon-word {
+        width: 19px;
+        height: 22px;
+    }
+
+    .icon-ppt {
+        width: 19px;
+        height: 22px;
+    }
+
+    .icon-pdf {
+        width: 19px;
+        height: 22px;
+    }
+
+    // 组卷图标
+    .icon-paper {
+        width: 22px;
+        height: 22px;
+    }
+
+    // 讲义图标
+    .icon-lecture {
+        width: 22px;
+        height: 22px;
+    }
+
+    // 未知图标
+    .icon-weizhi {
+        width: 22px;
+        height: 22px;
+    }
+}

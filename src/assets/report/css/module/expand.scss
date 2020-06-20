@@ -1,0 +1,81 @@
+/**
+ * 笔记和拓展图片
+ */
+.m-expand {
+
+    min-height: 290px;
+    padding-bottom: 140px;
+    //background: url(../../images/footer_bg.png) 0 100% no-repeat;
+    background: url(../../assets/report/images/footer_bg.png) 0 100% no-repeat;
+
+    // 左右切换按钮
+    .btn-prev,
+    .btn-next {
+        display: block;
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+        cursor: pointer;
+        outline: 0;
+        z-index: 1;
+
+        &:hover {
+            > i {
+                color: #5244dd;
+            }
+        }
+
+        > i {
+            color: #bbbcd4;
+            font-size: 50px;
+        }
+    }
+
+    .btn-prev {
+        left: 12px;
+    }
+
+    .btn-next {
+        right: 12px;
+    }
+}
+
+// 手机模式
+@media screen and (min-width: 320px) and (max-width: 420px) {
+    .m-expand {
+
+        max-width: 100%;
+        min-height: 2.9rem;
+        padding-bottom: 2.2rem;
+        background-size: auto 2.9rem;
+
+        .g-panel-content {
+            padding: 20px 10px;
+        }
+
+        .expand_img {
+            //width: 6.2rem;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            padding: 20px;
+
+            img {
+                padding: 6px;
+                //box-shadow: none;
+                max-width: 100%;
+                max-height: none;
+            }
+        }
+
+        .btn-prev,
+        .btn-next {
+            display: none;
+        }
+    }
+}

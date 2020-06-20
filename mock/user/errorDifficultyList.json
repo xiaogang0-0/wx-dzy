@@ -1,0 +1,21 @@
+{
+    "code": 0,
+    "message": "操作成功",
+    "data": {
+        "1": {
+            "name": "容易",
+            "quesTotal": 4,
+            "quesProportion": "80%"
+        },
+        "2": {
+            "name": "中等",
+            "quesTotal": 1,
+            "quesProportion": "20%"
+        },
+        "3": {
+            "name": "困难",
+            "quesTotal": 0,
+            "quesProportion": "0%"
+        }
+    }
+}

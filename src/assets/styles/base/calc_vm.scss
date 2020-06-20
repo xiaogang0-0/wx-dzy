@@ -1,0 +1,9 @@
+//iPhone 6尺寸作为设计稿基准 750px
+
+$vm_base: 750;
+
+@function vw($px) {
+
+    @return ($px / $vm_base) * 100vw;
+
+}

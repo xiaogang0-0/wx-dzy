@@ -1,0 +1,210 @@
+/**
+ * 错题本&经典题
+ */
+
+// 公用
+.m-ctb,
+.m-jdt {
+    margin-bottom: 60px;
+
+    .g-panel-content {
+        padding: 48px 60px 10px 60px;
+        background-color: #FFFFFF;
+    }
+
+    // 试题列表
+    .list-ques {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .list-ques-item {
+        padding: 0;
+        margin-bottom: 30px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .list-ques-item__hd {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+        padding: 5px 8px;
+        margin-bottom: 20px;
+        background-color: #eeeffc;
+        border-radius: 15px;
+        // 序号
+        .num {
+            color: #5244dd;
+            font-size: 16px;
+        }
+
+        // 知识点名称
+        .knowledge-name {
+            flex: 1;
+            margin: 0 15px;
+            color: #5244dd;
+            font-size: 14px;
+            @include text-ellipsis();
+        }
+
+        // 难易
+        .difficulty {
+            color: #5244dd;
+            font-size: 14px;
+        }
+    }
+
+    .list-ques-item__bd {
+        padding: 0 10px;
+        overflow-y: hidden;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+
+        .ques-content {
+            img {
+                max-width: 80% !important;
+                height: auto;
+            }
+        }
+
+        .ques-answer {
+            display: none;
+            padding: 30px 24px;
+            border-radius: 4px;
+            background-color: #f8f8fa;
+        }
+
+        .ques-option {
+            padding: 0 25px;
+            margin-bottom: 10px;
+        }
+
+        .ques-answer-sure {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 10px;
+            color: #ffa30b;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .ques-answer-analysis-tit {
+            margin-bottom: 10px;
+            color: #16114a;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .ques-answer-analysis-bd {
+            color: #16114a;
+            font-size: 14px;
+        }
+    }
+
+    // 更多
+    .more-ques {
+        padding: 30px 0;
+        margin-top: 10px;
+        color: #5244dd;
+        font-size: 16px;
+        text-align: center;
+        border-top: 1px dotted #eeeffc;
+
+        > span {
+            cursor: pointer;
+
+            > i {
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+// 错题本
+.m-ctb {
+    //min-height: 782px;
+    //background: url(../../images/ctb_bg.png) 0 50px no-repeat;
+    background: url(../../assets/report/images/ctb_bg.png) 0 50px no-repeat;
+
+    .decorate01 {
+        right: 0;
+        bottom: 0;
+        width: 212px;
+        height: 83px;
+        //background: url(../../images/ctb_describe01.png) 0 0 no-repeat;
+        background: url(../../assets/report/images/ctb_describe01.png) 0 0 no-repeat;
+    }
+}
+
+// 经典题
+.m-jdt {
+    .decorate01 {
+        left: 0;
+        bottom: 0;
+        width: 171px;
+        height: 77px;
+        //background: url(../../images/user_describe04.png) 0 0 no-repeat;
+        background: url(../../assets/report/images/user_describe04.png) 0 0 no-repeat;
+        background-size: 100% 100%;
+    }
+}
+
+// 手机模式
+@media screen and (min-width: 320px) and (max-width: 420px) {
+    .m-ctb,
+    .m-jdt {
+
+        margin-bottom: 25px;
+
+        .g-panel-content {
+            padding: 20px 10px;
+        }
+
+        .list-ques-item__hd {
+            .num {
+                font-size: 14px;
+            }
+
+            .knowledge-name {
+                margin: 0 8px;
+            }
+        }
+
+        .list-ques-item__bd {
+            .ques-answer {
+                padding: 15px 12px;
+            }
+        }
+
+        .more-ques {
+            padding: 15px 0;
+        }
+    }
+
+    // 错题本
+    .m-ctb {
+        min-height: auto;
+        background: none;
+        //
+        .decorate01 {
+            width: 2.12rem;
+            height: 0.83rem;
+            background-size: 100% 100%;
+        }
+    }
+
+    // 经典题
+    .m-jdt {
+
+        .decorate01 {
+            width: 1.71rem;
+            height: 0.77rem;
+            background-size: 100% 100%;
+        }
+    }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>大招云</title>
+    <script type="text/javascript">
+        /**
+         * window     window窗口对象
+         * pageSize   设计稿网页宽度
+         * fontSize   初始字体大小
+         */
+
+        var pageSize = 750;
+        var fontSize = 100;
+
+        !function (window, pageSize, fontSize) {
+            var document = window.document, //文档对象
+                html = document.documentElement, //获取html元素
+                event = ('onorientationchange' in window) ? 'orientationchange' : 'resize', //判断是屏幕旋转还是resize;
+                realw = pageSize / fontSize,
+                timer = null;
+
+            function refreshRem() {
+                var clientWidth = html.clientWidth || 320;
+                //设置html的fontSize，随着event的改变而改变。
+                html.style.fontSize = clientWidth / realw + 'px';
+            };
+
+            window.addEventListener(event, function () {
+                clearTimeout(timer);
+                timer = setTimeout(refreshRem, 300);
+            }, false);
+
+            /*
+            window.addEventListener('pageshow', function(e) {
+                if (e.persisted) { //缓存中读取
+                    clearTimeout(timer);
+                    timer = setTimeout(refreshRem, 300);
+                }
+            }, false);
+            */
+
+            refreshRem();
+            document.addEventListener("DOMContentLoaded", refreshRem, false);
+        }(window, pageSize, fontSize);
+    </script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            showProcessingMessages: false,
+            messageStyle: "none",
+            displayAlign: "center",
+            showMathMenu: false,
+            jax: ["input/TeX","output/HTML-CSS"],
+            tex2jax: {
+                inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+                displayMath: [ ['$$','$$'], ['\[','\]'] ],
+                skipTags: ["script","noscript","style","textarea","pre","code"]
+            }
+        });
+    </script>
+    <script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script>
+        (function () {
+            !window.MathJax && document.write('<script src="http://atf-static.oss-cn-beijing.aliyuncs.com/common/mathjax/MathJax.js?config=TeX-MML-AM_CHTML"><\/script>')
+        })();
+    </script>
+    <script src="http://atf-static.oss-cn-beijing.aliyuncs.com/wechatStudent/moment.min.js"></script>
+    <script src="http://atf-static.oss-cn-beijing.aliyuncs.com/wechatStudent/echarts.min.js"></script>
+    <script src="http://atf-static.oss-cn-beijing.aliyuncs.com/wechatStudent/weixin-js-sdk.js"></script>
+</head>
+<body>
+<noscript>
+    <strong>We're sorry but demo doesn't work properly without JavaScript enabled. Please enable it to
+        continue.</strong>
+</noscript>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+</body>
+</html>

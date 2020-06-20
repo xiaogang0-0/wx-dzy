@@ -1,0 +1,18 @@
+@import './base/reset.scss';
+@import './base/calc_vm.scss';
+@import './base/iconfont.scss';
+@import './base/mixin.scss';
+@import './base/common.scss';
+
+body {
+    overflow: auto;
+}
+
+#app {
+    font-family: '苹方', '思源黑体', '华文黑体', '微软雅黑', '黑体', 'SanFrancisco', 'Helvetica', 'Roboto';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    // text-align: center;
+    color: #2c3e50;
+    background:#F2F2F2;
+}

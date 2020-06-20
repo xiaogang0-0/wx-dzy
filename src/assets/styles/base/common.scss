@@ -1,0 +1,122 @@
+/**
+ * 全局公共样式
+ */
+
+//===================================================================
+//# vue
+[v-cloak] {
+    display: none;
+}
+
+//===================================================================
+//# app
+// #app {
+//     width: 100%;
+//     height: 100%;
+//     box-sizing: border-box;
+// }
+//============================组件 公用类=======================================
+
+$highlight-color: #F90;
+$violetColor: linear-gradient(to right, #4bb0ff, #6149f6);
+.r_btn {
+    color: rgb(255, 255, 255);
+    background: $violetColor;
+    border: 0px;
+}
+
+
+.icon {
+    width: 0.8rem;
+    height: 0.8rem;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+  }
+//============================外边距=======================================
+// 上边距-0
+.mt-0 {
+    margin-top: 0 !important;
+}
+
+// 下边距-0
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+// 左边距-0
+.ml-0 {
+    margin-left: 0 !important;
+}
+
+// 右边距-0
+.mr-0 {
+    margin-right: 0 !important;
+}
+
+//============================内边距=======================================
+// 上内边距-0
+.pt-0 {
+    padding-top: 0 !important;
+}
+
+// 下内边距-0
+.pb-0 {
+    padding-bottom: 0 !important;
+}
+
+// 左内边距-0
+.pl-0 {
+    padding-left: 0 !important;
+}
+
+// 右内边距-0
+.pr-0 {
+    padding-right: 0 !important;
+}
+
+.footerPad {
+    padding-bottom: 2.16rem !important;
+}
+
+//==========================浮动=========================================
+// 清除浮动
+.clearfix {
+    @include clearfix();
+}
+
+// 左浮动
+.pull-left {
+    @include pull-left();
+}
+
+// 右浮动
+.pull-right {
+    @include pull-right();
+}
+
+//========================文本===========================================
+// 居中对齐
+.text-center {
+    @include text-align(center);
+}
+
+// 左对齐
+.text-left {
+    @include text-align(left);
+}
+
+// 右对齐
+.text-right {
+    @include text-align(right);
+}
+
+// 单行文本超出显示省略号
+.text-ellipsis {
+    @include text-ellipsis();
+}
+
+// 多行文本超市显示省略号
+.text-ellipsis-more {
+    @include text-ellipsis-more();
+}

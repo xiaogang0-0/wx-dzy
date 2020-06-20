@@ -1,0 +1,83 @@
+.login {
+    position: relative;
+    min-height: 100vh;
+    background: #fff;
+    // .head {
+    // position: relative;
+    // width: vw(750);
+    // height: vw(474);
+    // height: 5rem;
+    // text-align: center;
+
+    // background: #D0111B;
+    // .logoImg {
+    //     margin-top: vw(112);
+    //     width: vw(336);
+    // }
+    .title {
+        padding-top: 0.7rem;
+        font-size: 0.48rem;
+        color: rgba(49, 52, 55, 1);
+        line-height: 0.66rem;
+        text-align: center;
+    }
+
+    .logoTitle {
+        font-size: 0.28rem;
+        color: rgba(157, 161, 166, 1);
+        line-height: 0.6rem;
+        text-align: center;
+    }
+
+    .loginForm {
+        padding-top: 1.5rem;
+
+        .userImg {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 1rem;
+        }
+
+        .userName {
+            font-size: 0.32rem;
+            color: rgba(49, 52, 55, 1);
+            line-height: 0.68rem;
+
+        }
+
+        .van-cell {
+            line-height: vw(80);
+        }
+
+        .van-cell:nth-of-type(1) {
+            border-radius: vw(20) vw(20) 0 0;
+        }
+
+        .van-cell:nth-of-type(2) {
+            border-radius: 0 0 vw(20) vw(20);
+        }
+
+        .van-checkbox {
+            padding-left: 0.25rem;
+            line-height: 1.2rem;
+        }
+
+        .van-button--info {
+            width: 100%;
+            border-radius: vw(7);
+            background-color: #D0111B;
+            border-color: #D0111B;
+            line-height: vw(80)
+        }
+
+        .van-cell:not(:last-child)::after {
+            right: 15px;
+            border-bottom: 1px solid #DEDEDE;
+        }
+
+    }
+
+    // }
+
+
+}

@@ -1,0 +1,328 @@
+.home {
+    position: relative;
+    min-height: 100vh;
+    background: #F0F2F5;
+    padding: 0.275rem;
+
+    .head {
+        font-size: 0.4rem;
+        color: rgba(49, 52, 55, 1);
+        background: rgba(255, 255, 255, 1);
+        line-height: 0.54rem;
+        text-indent: 0.15rem;
+
+        i {
+            display: inline-block;
+            font-size: 0.29rem;
+            color: rgba(109, 129, 156, 1);
+            line-height: 0.4rem;
+        }
+    }
+
+    .my-swipe {
+        margin-bottom: 0.38rem;
+        background: rgba(255, 255, 255, 1);
+
+        .van-swipe-item {
+            img {
+                width: 100%;
+                height: 2.6rem;
+                background: rgba(255, 255, 255, 1);
+                box-shadow: 0rem 0.1rem 0.4rem 0rem rgba(223, 227, 233, 0.39);
+                border-radius: 0.16rem;
+            }
+        }
+    }
+
+    .contentList {
+        .van-cell {
+            position: relative;
+            padding: 0;
+            margin-bottom: 0.38rem;
+            // width: 6.96rem;
+            width: 100%;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0rem 0.1rem 0.4rem 0rem rgba(223, 227, 233, 1);
+            border-radius: 0.16rem;
+
+            .contentItem {
+                background: rgba(255, 255, 255, 1);
+
+            }
+
+            .itemImg {
+                width: 100%;
+                // width: 6.96rem;
+                // height: 3.36rem;
+            }
+
+            .status {
+                position: absolute;
+                left: 0.29rem;
+                top: 0.22rem;
+                padding: 0 0.2rem;
+                line-height: 0.38rem;
+                background: rgba(0, 0, 0, 1);
+                border-radius: 0.08rem;
+                opacity: 0.35;
+                font-size: 0.24rem;
+                color: rgba(255, 255, 255, 1);
+            }
+
+            .cont {
+                padding: 0.24rem 0.29rem;
+            }
+
+            .tit {
+                font-size: 0.36rem;
+                color: rgb(49, 50, 51);
+                line-height: 0.5rem;
+
+                .type {
+                    display: inline-block;
+                    padding: 0 0.22rem;
+                    font-size: 0.24rem;
+                    color: rgba(49, 52, 55, 1);
+                    line-height: 0.38rem;
+                    background: rgba(248, 213, 126, 1);
+                    border-radius: 0.08rem;
+                    vertical-align: middle;
+                    margin-right: 0.2rem;
+                }
+            }
+
+            .logo {
+                width: 0.46rem;
+                height: 0.46rem;
+                margin-right: 0.12rem;
+                vertical-align: middle;
+            }
+
+            .btn {
+                line-height: 0.58rem;
+                border-radius: 0.29rem;
+                border: 0.02rem solid rgba(200, 204, 211, 1);
+            }
+
+            .timer {
+                padding-top: 0.05rem;
+                font-size: 0.24rem;
+                color: rgba(157, 161, 166, 1);
+                line-height: 0.34rem;
+            }
+        }
+
+        .van-cell.margin0 {
+            margin-bottom: 0;
+        }
+
+    }
+}
+
+.home_details {
+    position: relative;
+    min-height: 100vh;
+    // background: #F0F2F5;
+    background: #fff;
+
+    .my-swipe {
+        margin-bottom: 0.38rem;
+        background: rgba(255, 255, 255, 1);
+
+        .van-swipe-item {
+            img {
+                width: 100%;
+                height: 3.82rem;
+                background: rgba(255, 255, 255, 1);
+                box-shadow: 0rem 0.1rem 0.4rem 0rem rgba(223, 227, 233, 0.39);
+            }
+        }
+    }
+
+    .details_top {
+        padding: 0 0.28rem;
+        // position: relative;
+        // top: -1.38rem;
+        position: absolute;
+        top: 2.68rem;
+        left: 0;
+
+        .cont {
+            width: 100%;
+            overflow: hidden;
+            padding: 0.52rem 0.28rem 0;
+            background: rgba(255, 255, 255, 1);
+            // box-shadow: 0rem 0.2em 0.26rem 0rem rgba(233, 233, 223, 0.51);
+            box-shadow: 0rem 0.2rem 0.26rem 0rem #E9E9E9;
+            border-radius: 0.16rem;
+
+            .logo {
+                width: 0.88rem;
+                height: 0.88rem;
+                // margin-right: 0.12rem;
+                vertical-align: middle;
+            }
+
+            .tit {
+                font-size: 0.36rem;
+                color: rgba(51, 51, 51, 1);
+                line-height: 0.5rem;
+            }
+
+            .type {
+                display: inline-block;
+                padding: 0 0.08rem;
+                font-size: 0.24rem;
+                color: #000000;
+                line-height: 0.38rem;
+                background: rgba(223, 216, 247, 1);
+                border-radius: 0.08rem;
+            }
+
+            .timer {
+                // padding-top: 0.05rem;
+                font-size: 0.28rem;
+                color: rgba(49, 52, 55, 1);
+                line-height: 0.4rem;
+            }
+
+            .btnNone {
+                font-size: 0.28rem;
+                color: rgba(49, 52, 55, 1);
+                line-height: 0.4rem;
+                margin: 0.3rem 0 0.1rem;
+                border: none;
+            }
+
+            .btnNone .yz-yiguanzhu {
+                color: #F8D57D;
+            }
+
+
+            .w100 {
+                width: calc(100% + 0.56rem);
+                margin-left: -0.26rem;
+            }
+
+            .btnNone1 {
+                width: 100%;
+                font-size: 0.28rem;
+                color: rgba(49, 52, 55, 1);
+                line-height: 1.04rem;
+                // border-radius: 0;
+                border-left: none;
+                border-bottom: none;
+                border: 0 0 0 0.16rem;
+
+            }
+        }
+    }
+
+    .center_btn {
+        margin-top: 2.7rem;
+        font-size: 0.28rem;
+        line-height: 0.58rem;
+    }
+
+    .cont_footer {
+        margin: 0 0.28rem;
+        padding: 0.34rem 0.52rem 0.24rem;
+        background: #F0F2F5;
+
+        h3 {
+            font-size: 0.36rem;
+        }
+
+        .van-col--24 {
+            font-size: 0.3rem;
+        }
+    }
+
+    // 弹出
+    .wrapper {
+        display: flex;
+        // align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .wrapper_cont {
+        width: 5.96rem;
+        height: 8.62rem;
+        padding: 1.12rem 0.43rem 0.56rem;
+        // padding-top: 1.12rem;
+        background: rgba(255, 255, 255, 1);
+        border-radius: 0.16rem;
+        margin-top: 1rem;
+
+        .bgImg {
+            width: 100%;
+            // height: 2.54rem;
+            // margin-bottom: 2rem;
+            margin-bottom: 1.3rem;
+        }
+        .logo {
+            width: 0.88rem;
+            height: 0.88rem;
+        }
+        .ma {
+            width: 1.26rem;
+            height: 1.38rem;
+        }
+        .tit {
+            color:#333;
+        }
+        .timer {
+            color:#36393C;
+        }
+
+
+    }
+
+}
+
+
+.home_introduce {
+    background: #fff;
+    min-height: 100vh;
+    .banner {
+        width: 100%;
+        height: 4rem;
+    }
+    .cont {
+        padding: 0.24rem 0.34rem;
+        .tit {
+            font-size: 0.35rem;
+            line-height: 0.54rem;
+            color: #000;
+        }
+    }
+    .btnNone {
+        font-size: 0.28rem;
+        color: rgba(49, 52, 55, 1);
+        line-height: 0.4rem;
+        border: none;
+    }
+
+    .btnNone .yz-yiguanzhu {
+        color: #F8D57D;
+    }
+
+    .text_wrap {
+        // background: #F7F8FA;
+    }
+    .text {
+        margin-top: 0.3rem;
+        width: 100%;
+    }
+}
+// 展会日历
+.home_calendar {
+    background: #fff;
+    min-height: 100vh;
+    padding: 0.32rem 0.25rem;
+
+    .bot_text {
+        
+    }
+}

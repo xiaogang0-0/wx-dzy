@@ -1,0 +1,91 @@
+/**
+ * 头部
+ */
+.g-header {
+    text-align: left !important;
+    height: 486px;
+    //background: url(../../images/header_bg.jpg) 0 0 no-repeat;
+    background: url("../../assets/report/images/header_bg.jpg") 0 0 no-repeat;
+
+    // logo
+    .logo {
+        padding-top: 40px;
+        padding-left: 54px;
+        margin-bottom: 49px;
+
+        > img {
+            max-width: 100%;
+        }
+    }
+
+    // 课程信息
+    .intro {
+        padding-left: 140px;
+    }
+
+    // 用户名
+    h2 {
+        margin: 0;
+        color: #16114a;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 68px;
+    }
+
+    // 课程类型（一对一、一对多）
+    .type {
+        margin-left: 270px;
+        margin-bottom: 36px;
+    }
+
+    // 描述
+    p {
+        color: #16114a;
+        font-size: 18px;
+        line-height: 30px;
+    }
+}
+
+// 手机模式
+@media screen and (min-width: 320px) and (max-width: 420px) {
+    .g-header {
+        height: auto;
+        margin-bottom: 30px;
+        //background: url(../../images/mobile_header_bg.jpg) 0 0 no-repeat;
+        background: url(../../assets/report/images/mobile_header_bg.jpg) 0 0 no-repeat;
+        background-size: auto 4.30rem;
+
+
+        .logo {
+            padding-top: 0.40rem;
+            padding-left: 0.32rem;
+            margin-bottom: 0.8rem;
+
+            > img {
+                width: 0.92rem;
+                height: 0.42rem;
+            }
+        }
+
+        .intro {
+            padding-left: 0.62rem;
+
+            h2 {
+                font-size: 20px;
+                line-height: 1;
+                margin-bottom: 0.2rem;
+            }
+
+            .type {
+                width: 0.72rem;
+                height: 0.30rem;
+                margin-left: 3.9rem;
+            }
+
+            p {
+                font-size: 14px;
+                line-height: 22px;
+            }
+        }
+    }
+}

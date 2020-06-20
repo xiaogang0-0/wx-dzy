@@ -1,0 +1,142 @@
+/**
+ * 知识点（一对一）
+ */
+.m-knowledge-one {
+
+    margin-bottom: 60px;
+    //background: url(../../images/m_knowledge_one_bg.png) 100% 40px no-repeat;
+    background: url(../../assets/report/images/m_knowledge_one_bg.png) 100% 40px no-repeat;
+
+    .g-panel-content {
+        min-height: 350px;
+        padding: 44px 60px 40px 60px;
+    }
+
+    .list-knowledge {
+    }
+
+    .list-knowledge-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 56px;
+
+        .col-l-hd {
+            flex: 1;
+            padding: 6px 0;
+            color: #605e7b;
+            font-size: 16px;
+        }
+
+        .col-r-hd {
+            padding: 6px 0;
+            color: #605e7b;
+            font-size: 16px;
+            width: 152px;
+        }
+
+        .col-l {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            overflow: hidden;
+
+            > span {
+                flex: 1;
+                margin-left: 12px;
+            }
+        }
+
+        .col-r {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 152px;
+
+            > span {
+                color: #5244dd;
+            }
+
+            .diff {
+                color: #ffa30b;
+            }
+        }
+
+        // 评级
+        .rate {
+            width: 86px;
+            height: 24px;
+            margin-right: 26px;
+            font-size: 16px;
+        }
+
+        // 超赞
+        .rate01 {
+            //background: url(../../images/knowledge-01.png) 0 0 no-repeat;
+            background: url(../../assets/report/images/knowledge-01.png) 0 0 no-repeat;
+            background-size: 100% 100%;
+        }
+
+        // 优秀
+        .rate02 {
+            //background: url(../../images/knowledge-02.png) 0 0 no-repeat;
+            background: url(../../assets/report/images/knowledge-02.png) 0 0 no-repeat;
+            background-size: 100% 100%;
+        }
+
+        // 良好
+        .rate03 {
+            //background: url(../../images/knowledge-03.png) 0 0 no-repeat;
+            background: url(../../assets/report/images/knowledge-03.png) 0 0 no-repeat;
+            background-size: 100% 100%;
+        }
+
+        // 一般
+        .rate04 {
+            //background: url(../../images/knowledge-04.png) 0 0 no-repeat;
+            background: url(../../assets/report/images/knowledge-04.png) 0 0 no-repeat;
+            background-size: 100% 100%;
+        }
+
+        // 待提高
+        .rate05 {
+            //background: url(../../images/knowledge-05.png) 0 0 no-repeat;
+            background: url(../../assets/report/images/knowledge-05.png) 0 0 no-repeat;
+            background-size: 100% 100%;
+            margin-right: 10px;
+        }
+    }
+}
+
+// 手机模式
+@media screen and (min-width: 320px) and (max-width: 420px) {
+    .m-knowledge-one {
+
+        margin-bottom: 25px;
+        background: none;
+
+        .g-panel-content {
+            min-height: auto;
+            padding: 20px 10px;
+        }
+
+        .list-knowledge-item {
+            height: auto;
+            padding: 10px 0;
+        }
+
+        .list-knowledge-item {
+            .col-r {
+                width: 135px;
+                margin-left: 2px;
+            }
+
+            .rate {
+                width: 65px;
+                height: 18px;
+                margin-right: 16px;
+            }
+        }
+    }
+}

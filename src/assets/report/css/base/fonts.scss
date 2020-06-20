@@ -1,0 +1,40 @@
+/*@font-face {font-family: "icon-font";
+    src: url('../../fonts/iconfont.eot?t=1551521875314'); !* IE9 *!
+    src: url('../../fonts/iconfont.eot?t=1551521875314#iefix') format('embedded-opentype'), !* IE6-IE8 *!
+    url('../../fonts/iconfont.woff?t=1551521875314') format('woff'),
+    url('../../fonts/iconfont.ttf?t=1551521875314') format('truetype'), !* chrome, firefox, opera, Safari, Android, iOS 4.2+ *!
+    url('../../fonts/iconfont.svg?t=1551521875314#icon-font') format('svg'); !* iOS 4.1- *!
+}*/
+@font-face {
+    font-family: "icon-font";
+    src: url('../../assets/report/fonts/iconfont.eot?t=1551521875314'); /* IE9 */
+    src: url('../../assets/report/fonts/iconfont.eot?t=1551521875314#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../../assets/report/fonts/iconfont.woff?t=1551521875314') format('woff'),
+    url('../../assets/report/fonts/iconfont.ttf?t=1551521875314') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url('../../assets/report/fonts/iconfont.svg?t=1551521875314#icon-font') format('svg'); /* iOS 4.1- */
+}
+
+.icon-font {
+    font-family: "icon-font" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.iconarrow-down:before {
+    content: "\e6db";
+}
+
+.iconarr-right:before {
+    content: "\e6dc";
+}
+
+.iconarr-left:before {
+    content: "\e6dd";
+}
+
+.iconarrow-up:before {
+    content: "\e6de";
+}
+
