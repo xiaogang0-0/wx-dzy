@@ -92,7 +92,7 @@
     </div>
 
     <!-- 占位图 -->
-    <img v-else src="@/assets/images/orderList/null.png" class="nullImg" alt />
+    <img v-else src="@/assets/images/null.png" class="nullImg" alt />
 
     <van-overlay :show="showShare" @click="showShare = false">
       <div class="wrapper" @click.stop>

@@ -47,7 +47,7 @@ configureWebpack: {
 ```
 
 ### 项目地址
-git clone git@172.16.45.64:hlwl-goods-wx
+git clone https://github.com/xiaogang0-0/wx-dzy.git
 
 ### 开发环境
 

@@ -7,7 +7,7 @@
         <span class="bot_text">这里展会信息真的很多</span>
       </van-divider>
     </div>
-    <img v-else src="@/assets/images/orderList/null.png" class="nullImg" alt />
+    <img v-else src="@/assets/images/null.png" class="nullImg" alt />
 
     <div class="container-water-fall">
       <div>

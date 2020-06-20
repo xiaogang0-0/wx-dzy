@@ -42,7 +42,7 @@
     </div>
 
     <!-- 占位图 -->
-    <img v-else src="@/assets/images/orderList/null.png" class="nullImg" alt />
+    <img v-else src="@/assets/images/null.png" class="nullImg" alt />
 
   </div>
 </template>

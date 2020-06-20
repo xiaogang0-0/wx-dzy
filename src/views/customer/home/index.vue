@@ -14,7 +14,7 @@
     </van-swipe>
 
     <!-- 占位图 -->
-    <img v-if="!list.length" src="@/assets/images/orderList/null.png" class="nullImg" alt />
+    <img v-if="!list.length" src="@/assets/images/null.png" class="nullImg" alt />
     <!-- 列表内容 -->
     <div class="content" v-else>
       <!-- 下拉刷新 -->
