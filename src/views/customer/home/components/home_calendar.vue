@@ -1,49 +1,57 @@
 // 展会日历
 <template>
   <div class="home_calendar">
-    <div v-if="details.id">
-      222
-      <van-divider dashed>
-        <span class="bot_text">这里展会信息真的很多</span>
-      </van-divider>
-    </div>
-    <img v-else src="@/assets/images/null.png" class="nullImg" alt />
-
-    <div class="container-water-fall">
-      <div>
-        <button @click="loadmore">loadmore</button>
-        <button @click="mix">mix</button>
-        <button @click="switchCol('5')">5列</button>
-        <button @click="switchCol('8')">8列</button>
-        <button @click="switchCol('10')">10列</button>
-      </div>
-
-      <waterfall
-        :col="col"
-        width="50%"
-        gutterWidth="50%"
-        :data="data"
-        @loadmore="loadmore"
-        @scroll="scroll"
-      >
-        <template>
-          <div class="cell-item" v-for="(item,index) in data">
-            <img v-if="item.img" :src="item.img" alt="加载错误" />
-            <div class="item-body">
-              <div class="item-desc">{{item.title}}</div>
-              <div class="item-footer">
-                <div class="avatar" :style="{backgroundImage : `url(${item.avatar})` }"></div>
-                <div class="name">{{item.user}}</div>
-                <div class="like" :class="item.liked ?'active' :''">
-                  <i></i>
-                  <div class="like-total">{{item.liked}}</div>
+    <div v-if="details.id">222</div>
+    <!-- 占位图 -->
+    <img v-if="!list.length" src="@/assets/images/null.png" class="nullImg" alt />
+    <!-- 列表内容 -->
+    <div class="content" v-else>
+      <!-- 下拉刷新 -->
+      <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+        <!-- List 列表 -->
+        <van-list
+          v-model="loading"
+          :finished="finished"
+          finished-text="----- 这里展会信息真的很多 -----"
+          error-text="请求失败，点击重新加载"
+          @load="onLoad"
+          class="contentList"
+        >
+          <div class="container-water-fall">
+            <waterfall
+              :col="col"
+              :data="list"
+              @loadmore="loadmore"
+              @scroll="scroll"
+              :lazyDistance="50"
+            >
+              <template>
+                <div class="cell-item" v-for="(item,index) in list" :key="index">
+                  <img v-if="item.img" :src="item.img" alt="加载错误" />
+                  <div class="item-body">
+                    <div class="item-desc">{{item.title}}</div>
+                    <div class="item-footer">
+                      <div class="name">{{item.timer}}</div>
+                      <div class="like" :class="item.liked ?'active' :''">
+                        <i></i>
+                        <div class="like-total">
+                          地点：{{item.liked}}
+                          <span class="icon">{{ '仅线下' || '仅线上' || '线上/线下'}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </template>
+            </waterfall>
           </div>
-        </template>
-      </waterfall>
+        </van-list>
+      </van-pull-refresh>
     </div>
+
+    <!-- <van-divider dashed>
+      <span class="bot_text">这里展会信息真的很多</span>
+    </van-divider>-->
 
     <!-- 占位图 -->
   </div>
@@ -70,49 +78,48 @@ export default {
       // 当前年
       year: "",
       showShare: false,
-      data: [
+      list: [
         {
-          img: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
-          title: '标题1',
-          imavatarg: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
-          user: '用户1',
-          liked: 'liked1'
+          img:
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
+          title: "亚森车品春季展2",
+          timer: "06.23-06.30",
+          imavatarg:
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
+          liked: "北京"
         },
         {
-          img: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
-          title: '标题1',
-          imavatarg: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
-          user: '用户1',
-          liked: 'liked1'
+          img:
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
+          title: "亚森车品春季展1",
+          timer: "06.23-06.30",
+          imavatarg:
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
+          liked: "上海"
         },
         {
-          img: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
-          title: '标题1',
-          imavatarg: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
-          user: '用户1',
-          liked: 'liked1'
+          img:
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592655275421&di=6d40b74106bd65c8bec3381e20b52d38&imgtype=0&src=http%3A%2F%2Fa1.att.hudong.com%2F05%2F00%2F01300000194285122188000535877.jpg",
+          title: "亚森车品春季展",
+          timer: "06.23-06.30",
+          imavatarg:
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
+          liked: "天津"
         }
       ],
       col: 2,
       details: {
         id: "1"
-      }
-      // loading: false,
-      // finished: false,
-      // refreshing: false,
-      // pageSize: 10,
-      // pageNum: 1
+      },
+      loading: false,
+      finished: false,
+      refreshing: false,
+      pageSize: 10,
+      pageNum: 1
     };
   },
 
-  computed: {
-    itemWidth() {
-      return 50 * (document.documentElement.clientWidth / 750); //#rem布局 计算宽度
-    },
-    gutterWidth() {
-      return 9 * 0.5 * (document.documentElement.clientWidth / 750); // #rem布局 计算x轴方向margin(y轴方向的margin自定义在css中即可)
-    }
-  },
+  computed: {},
 
   methods: {
     scroll(scrollData) {
@@ -123,7 +130,7 @@ export default {
       console.log(this.col);
     },
     loadmore(index) {
-      this.data = this.data.concat(this.data);
+      this.list = this.list.concat(this.list);
     },
     // 获取当前年
     doHandleYear(tYear) {
@@ -152,18 +159,14 @@ export default {
         }
       });
     },
+
     // 搜索
     onSearch() {
       this.questionList = [];
       this.pageNum = 1;
       let params = {
-        inquiryCode: this.searchText, // 询价单号
-        status: this.status, // 询价单状态，2待报价，3已报价，4已超时，5已完成
         pageNum: this.pageNum, // 页数
-        pageSize: this.pageSize, // 每页几条数据
-        startTime: "", // 开始时间
-        operator: "", // 操作人
-        productId: ""
+        pageSize: this.pageSize // 每页几条数据
       };
       // console.log(params,'onSearch')
       this.onsubmt(params);
@@ -173,13 +176,8 @@ export default {
     onLoad() {
       this.pageNum++;
       let params = {
-        inquiryCode: this.searchText, // 询价单号
-        status: this.status, // 询价单状态，2待报价，3已报价，4已超时，5已完成
         pageNum: this.pageNum, // 页数
-        pageSize: this.pageSize, // 每页几条数据
-        startTime: "", // 开始时间
-        operator: "", // 操作人
-        productId: ""
+        pageSize: this.pageSize // 每页几条数据
       };
       // console.log(params,'onLoad')
       this.onsubmt(params);
@@ -190,13 +188,8 @@ export default {
       this.finished = false;
       this.pageNum = 1;
       let params = {
-        inquiryCode: this.searchText, // 询价单号
-        status: this.status, // 询价单状态，2待报价，3已报价，4已超时，5已完成
         pageNum: this.pageNum, // 页数
-        pageSize: this.pageSize, // 每页几条数据
-        startTime: "", // 开始时间
-        operator: "", // 操作人
-        productId: ""
+        pageSize: this.pageSize // 每页几条数据
       };
       this.onsubmt(params, 1);
     },
@@ -205,29 +198,27 @@ export default {
     onsubmt(params, statu) {
       return;
       let status = statu ? statu : 2; // 默认正常请求
-      Api.quotationList(params)
+      Api.getHomePage(params)
         .then(res => {
-          let { rows, total } = res;
-          // console.log(rows,rows.length,'rows,rows.length')
-          // if (rows.length) {
+          let { code, msg, data, total } = res;
           // 加载状态结束
           this.loading = false;
-
-          if (status == 1) {
-            // 上拉刷新
-            this.refreshing = false;
-            this.questionList = rows;
-            this.$toast("刷新成功");
-          } else {
-            rows.forEach(element => {
-              this.questionList.push(element);
-            });
+          if (code == 200) {
+            if (status == 1) {
+              // 上拉刷新
+              this.refreshing = false;
+              this.questionList = data;
+              this.$toast("刷新成功");
+            } else {
+              data.forEach(element => {
+                this.questionList.push(element);
+              });
+            }
+            // 数据全部加载完成
+            if (data.length < this.pageSize) {
+              this.finished = true;
+            }
           }
-          // 数据全部加载完成
-          if (rows.length < this.pageSize) {
-            this.finished = true;
-          }
-          // }
         })
         .catch(err => {
           // 上拉刷新
@@ -236,24 +227,19 @@ export default {
         });
     },
 
-    onRefresh() {
-      // 清空列表数据
-      this.finished = false;
+    // 查看详情
+    handleLook(_id, title) {
+      this.$router.push({
+        name: "home_details",
+        query: {
+          //   id: _id
+          id: _id || 11,
+          title: title || "自定义标题"
+        }
+      });
+    },
 
-      // 重新加载数据
-      // 将 loading 设置为 true，表示处于加载状态
-      this.loading = true;
-      this.onLoad();
-    }
-  },
 
-  beforeRouteLeave(to, from, next) {
-    // 主页禁止返回
-    if (to.fullPath == "/login") {
-      next(false);
-    } else {
-      next();
-    }
   },
 
   mounted() {
@@ -276,6 +262,24 @@ export default {
 </script>
 
 <style lang="scss">
+.home_calendar {
+  .container-water-fall {
+    .vue-waterfall-column {
+      // background: green;
+      width: 3.36rem !important;
+      margin-right: 0.28rem;
+      .cell-item {
+        margin-bottom: 0.28rem;
+      }
+      img {
+        width: 100%;
+      }
+    }
+    .vue-waterfall-column:last-child {
+      margin-right: 0;
+    }
+  }
+}
 </style>
 <style lang="scss" scoped>
 @import "@/assets/styles/base/calc_vm.scss";

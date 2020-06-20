@@ -190,6 +190,15 @@ export default {
     };
   },
 
+  created() {
+    this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    this.id = this.$route.query.id;
+    document.title = this.$route.query.title;
+    this.year = this.doHandleYear();
+    // 默认刷新列表
+    this.handleGetDetail();
+  },
+
   methods: {
     // 获取当前年
     doHandleYear(tYear) {
@@ -248,86 +257,17 @@ export default {
         }
       });
     },
-    // 搜索
-    onSearch() {
-      this.questionList = [];
-      this.pageNum = 1;
-      let params = {
-        inquiryCode: this.searchText, // 询价单号
-        status: this.status, // 询价单状态，2待报价，3已报价，4已超时，5已完成
-        pageNum: this.pageNum, // 页数
-        pageSize: this.pageSize, // 每页几条数据
-        startTime: "", // 开始时间
-        operator: "", // 操作人
-        productId: ""
-      };
-      // console.log(params,'onSearch')
-      this.onsubmt(params);
-    },
 
-    // 懒加载请求加载列表
-    onLoad() {
-      this.pageNum++;
-      let params = {
-        inquiryCode: this.searchText, // 询价单号
-        status: this.status, // 询价单状态，2待报价，3已报价，4已超时，5已完成
-        pageNum: this.pageNum, // 页数
-        pageSize: this.pageSize, // 每页几条数据
-        startTime: "", // 开始时间
-        operator: "", // 操作人
-        productId: ""
-      };
-      // console.log(params,'onLoad')
-      this.onsubmt(params);
-    },
-
-    // 上拉刷新
-    onRefresh() {
-      this.finished = false;
-      this.pageNum = 1;
-      let params = {
-        inquiryCode: this.searchText, // 询价单号
-        status: this.status, // 询价单状态，2待报价，3已报价，4已超时，5已完成
-        pageNum: this.pageNum, // 页数
-        pageSize: this.pageSize, // 每页几条数据
-        startTime: "", // 开始时间
-        operator: "", // 操作人
-        productId: ""
-      };
-      this.onsubmt(params, 1);
-    },
-
-    // 请求参数 params status{1:上拉刷新，2：正常请求}
-    onsubmt(params, statu) {
-      return;
-      let status = statu ? statu : 2; // 默认正常请求
-      Api.quotationList(params)
+    // 请求参数
+    handleGetDetail() {
+      Api.getHomePageDetails(this.id)
         .then(res => {
-          let { rows, total } = res;
-          // console.log(rows,rows.length,'rows,rows.length')
-          // if (rows.length) {
-          // 加载状态结束
-          this.loading = false;
-
-          if (status == 1) {
-            // 上拉刷新
-            this.refreshing = false;
-            this.questionList = rows;
-            this.$toast("刷新成功");
-          } else {
-            rows.forEach(element => {
-              this.questionList.push(element);
-            });
+          let { code, msg, data, total } = res;
+          if (code == 200) {
+            this.banner = data;
           }
-          // 数据全部加载完成
-          if (rows.length < this.pageSize) {
-            this.finished = true;
-          }
-          // }
         })
         .catch(err => {
-          // 上拉刷新
-          this.refreshing = false;
           console.log(err, "err");
         });
     }
@@ -335,31 +275,14 @@ export default {
 
   computed: {},
 
-  beforeRouteLeave(to, from, next) {
-    // 主页禁止返回
-    if (to.fullPath == "/login") {
-      next(false);
-    } else {
-      next();
-    }
-  },
-
   mounted() {
     this.$nextTick().then(() => {
       setTimeout(() => {
         window.scrollTo(0, 0);
       }, 0);
     });
-  },
-
-  created() {
-    this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    this.inquiryId = this.$route.query.inquiryId;
-    document.title = this.$route.query.title;
-    this.year = this.doHandleYear();
-    // 默认刷新列表
-    // this.onSearch();
   }
+
 };
 </script>
 
