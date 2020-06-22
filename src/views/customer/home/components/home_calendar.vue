@@ -1,57 +1,71 @@
 // 展会日历
 <template>
   <div class="home_calendar">
-    <div v-if="details.id">222</div>
-    <!-- 占位图 -->
-    <img v-if="!list.length" src="@/assets/images/null.png" class="nullImg" alt />
-    <!-- 列表内容 -->
-    <div class="content" v-else>
-      <!-- 下拉刷新 -->
-      <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
-        <!-- List 列表 -->
-        <van-list
-          v-model="loading"
-          :finished="finished"
-          finished-text="----- 这里展会信息真的很多 -----"
-          error-text="请求失败，点击重新加载"
-          @load="onLoad"
-          class="contentList"
-        >
-          <div class="container-water-fall">
-            <waterfall
-              :col="col"
-              :data="list"
-              @loadmore="loadmore"
-              @scroll="scroll"
-              :lazyDistance="50"
-            >
-              <template>
-                <div class="cell-item" v-for="(item,index) in list" :key="index">
-                  <img v-if="item.img" :src="item.img" alt="加载错误" />
-                  <div class="item-body">
-                    <div class="item-desc">{{item.title}}</div>
-                    <div class="item-footer">
-                      <div class="name">{{item.timer}}</div>
-                      <div class="like" :class="item.liked ?'active' :''">
-                        <i></i>
-                        <div class="like-total">
-                          地点：{{item.liked}}
-                          <span class="icon">{{ '仅线下' || '仅线上' || '线上/线下'}}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </template>
-            </waterfall>
-          </div>
-        </van-list>
-      </van-pull-refresh>
+    <div class="head">
+      <img src="@/assets/images/home/head.png" alt />
     </div>
 
-    <!-- <van-divider dashed>
+    <van-tabs v-model="active" scrollspy sticky @click="onClick">
+      <van-tab v-for="(item,index) in details" :key="index" :title="item.monthDesc"></van-tab>
+    </van-tabs>
+    <!-- 占位图 -->
+    <img
+      v-if="!itemList.enterpriseShowCalendarList || !itemList.enterpriseShowCalendarList.length"
+      src="@/assets/images/null.png"
+      class="nullImg"
+      alt
+    />
+    <!-- 列表内容 -->
+    <div class="content" v-else>
+      <div class="container-water-fall">
+        <waterfall
+          :col="col"
+          :data="itemList.enterpriseShowCalendarList"
+          @loadmore="loadmore"
+          @scroll="scroll"
+          :lazyDistance="50"
+        >
+          <template>
+            <div
+              class="cell-item"
+              v-for="(obj,_index) in itemList.enterpriseShowCalendarList"
+              :key="_index"
+              @click="handleLook(obj.id)"
+            >
+              <img v-if="obj.mediaUrl" :src="obj.mediaUrl" alt="加载错误" />
+              <div class="item-body">
+                <div class="item-desc">
+                  <p>{{obj.mediaTitle}}</p>
+                  <p class="timer">{{obj.startDate}} - {{obj.endDate}}</p>
+                </div>
+
+                <div class="item-footer">
+                  <p class="like-total clear">
+                    地点：{{obj.liked}}
+                    <span class="status">{{ '仅线下' || '仅线上' || '线上/线下'}}</span>
+                    <span
+                      class="status"
+                      :class="true ? 'style1' : ''"
+                    >{{ '仅线下' || '仅线上' || '线上/线下'}}</span>
+                    <span
+                      class="status"
+                      :class="true ? 'style2' : ''"
+                    >{{ '仅线下' || '仅线上' || '线上/线下'}}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </template>
+        </waterfall>
+      </div>
+    </div>
+
+    <van-divider
+      dashed
+      v-show="itemList.enterpriseShowCalendarList && itemList.enterpriseShowCalendarList.length"
+    >
       <span class="bot_text">这里展会信息真的很多</span>
-    </van-divider>-->
+    </van-divider>
 
     <!-- 占位图 -->
   </div>
@@ -78,39 +92,128 @@ export default {
       // 当前年
       year: "",
       showShare: false,
-      list: [
+      active: "二月",
+      details: [
         {
-          img:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
-          title: "亚森车品春季展2",
-          timer: "06.23-06.30",
-          imavatarg:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
-          liked: "北京"
+          month: 1,
+          monthDesc: "一月",
+          enterpriseShowCalendarList: []
         },
         {
-          img:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
-          title: "亚森车品春季展1",
-          timer: "06.23-06.30",
-          imavatarg:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
-          liked: "上海"
+          month: 2,
+          monthDesc: "二月",
+          enterpriseShowCalendarList: [
+            {
+              id: 1272203711512246651,
+              enterpriseId: 1272913711522246658,
+              enterpriseName: "亚森国际",
+              startDate: "2020-02-17",
+              endDate: "2020-02-25",
+              showName: "亚森车品春季展",
+              mediaUrl:
+                "https://img30.360buyimg.com/popWaterMark/jfs/t1/117113/35/8884/224865/5ed3b7eaE848717a8/bb3a27cfcac3a2e8.jpg",
+              videoUrl:
+                "https://vod.300hu.com/4c1f7a6atransbjngwcloud1oss/56219e93229189724781699073/v.f30.mp4",
+              mediaTitle: "展会1",
+              mediaType: 1,
+              mediaDuration: "02:22",
+              provinceName: "",
+              cityName: "",
+              showFormat: 1
+            },
+            {
+              id: 1272203711512246651,
+              enterpriseId: 1272913711522246658,
+              enterpriseName: "亚森国际",
+              startDate: "2020-02-17",
+              endDate: "2020-02-25",
+              showName: "亚森车品春季展",
+              mediaUrl:
+                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592815006098&di=97d46c818f57733bc08d54ce0a9462e6&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D2080745074%2C2793209448%26fm%3D214%26gp%3D0.jpg",
+              videoUrl:
+                "https://vod.300hu.com/4c1f7a6atransbjngwcloud1oss/56219e93229189724781699073/v.f30.mp4",
+              mediaTitle: "展会2",
+              mediaType: 1,
+              mediaDuration: "02:22",
+              provinceName: "",
+              cityName: "",
+              showFormat: 1
+            }
+          ]
         },
         {
-          img:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592655275421&di=6d40b74106bd65c8bec3381e20b52d38&imgtype=0&src=http%3A%2F%2Fa1.att.hudong.com%2F05%2F00%2F01300000194285122188000535877.jpg",
-          title: "亚森车品春季展",
-          timer: "06.23-06.30",
-          imavatarg:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg",
-          liked: "天津"
+          month: 3,
+          monthDesc: "三月",
+          enterpriseShowCalendarList: []
+        },
+        {
+          month: 4,
+          monthDesc: "四月",
+          enterpriseShowCalendarList: []
+        },
+        {
+          month: 5,
+          monthDesc: "五月",
+          enterpriseShowCalendarList: []
+        },
+        {
+          month: 6,
+          monthDesc: "六月",
+          enterpriseShowCalendarList: [
+            {
+              id: 1272203711522246651,
+              enterpriseId: 1272913711522246658,
+              enterpriseName: "亚森国际",
+              startDate: "2020-06-18",
+              endDate: "2020-06-21",
+              showName: "亚森车品夏季展",
+              mediaUrl:
+                "https://img30.360buyimg.com/popWaterMark/jfs/t1/117113/35/8884/224865/5ed3b7eaE848717a8/bb3a27cfcac3a2e8.jpg",
+              videoUrl: "",
+              mediaTitle: "展会2",
+              mediaType: 0,
+              mediaDuration: "",
+              provinceName: "北京",
+              cityName: "北京",
+              showFormat: 2
+            }
+          ]
+        },
+        {
+          month: 7,
+          monthDesc: "七月",
+          enterpriseShowCalendarList: []
+        },
+        {
+          month: 8,
+          monthDesc: "八月",
+          enterpriseShowCalendarList: []
+        },
+        {
+          month: 9,
+          monthDesc: "九月",
+          enterpriseShowCalendarList: []
+        },
+        {
+          month: 10,
+          monthDesc: "十月",
+          enterpriseShowCalendarList: []
+        },
+        {
+          month: 11,
+          monthDesc: "十一月",
+          enterpriseShowCalendarList: []
+        },
+        {
+          month: 12,
+          monthDesc: "十二月",
+          enterpriseShowCalendarList: []
         }
       ],
+      itemList: {},
+
       col: 2,
-      details: {
-        id: "1"
-      },
+
       loading: false,
       finished: false,
       refreshing: false,
@@ -122,6 +225,12 @@ export default {
   computed: {},
 
   methods: {
+    onClick(name, title) {
+      console.log(name, title);
+      this.itemList = this.details[name];
+      // Toast(title);
+    },
+
     scroll(scrollData) {
       console.log(scrollData);
     },
@@ -237,9 +346,7 @@ export default {
           title: title || "自定义标题"
         }
       });
-    },
-
-
+    }
   },
 
   mounted() {
@@ -274,10 +381,50 @@ export default {
       img {
         width: 100%;
       }
+      .item-desc {
+        font-size: 0.28rem;
+        color: rgba(49, 52, 55, 1);
+        line-height: 0.44rem;
+      }
+      .like-total {
+        font-size: 0.24rem;
+        color: rgba(157, 161, 166, 1);
+        line-height: 0.3rem;
+        padding: 0.22rem 0;
+
+        .status {
+          float: right;
+          padding: 0 0.03rem;
+          font-size: 0.2rem;
+          color: rgba(0, 0, 0, 1);
+          line-height: 0.28rem;
+          background: rgba(193, 232, 238, 1);
+          border-radius: 0.08rem;
+        }
+        .status.style1 {
+          background: rgba(223, 216, 247, 1);
+        }
+        .status.style2 {
+          background: rgba(248, 213, 126, 1);
+        }
+      }
     }
     .vue-waterfall-column:last-child {
       margin-right: 0;
     }
+  }
+  .van-tabs {
+    margin-bottom: 0.41rem;
+  }
+  .van-tabs--line .van-tabs__wrap {
+    width: 100%;
+  }
+  .van-tab__pane,
+  .van-tab__pane-wrapper {
+    display: none;
+  }
+  .van-tab--active {
+    color: #0091ff;
   }
 }
 </style>

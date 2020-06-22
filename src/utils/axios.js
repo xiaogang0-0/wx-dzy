@@ -18,9 +18,8 @@ const env = process.env.NODE_ENV === 'development' ?
 
 console.log(env,'运行环境env{production:线上;test:测试;development:本地;}')
 // 线上测试&线上正式环境   
-// const baseURL = env === 'production' ? 'http://platform.hlwl.com:9300' : (env === 'test' ? 'http://hlwl.ddky.com:9300' : 'http://hlwl.ddky.com:9300');
-const baseURL = env === 'production' ? 'http://192.168.15.61:8899/dzy' : (env === 'test' ? 'http://192.168.15.61:8899/dzy' : 'http://192.168.15.61:8899/dzy');
-
+// const baseURL = env === 'production' ? 'http://192.168.15.61:8899/dzy' : (env === 'test' ? 'http://192.168.15.61:8899/dzy' : 'http://192.168.15.61:8899/dzy');
+const baseURL = env === 'production' ? 'http://es.hlwl.com:20000/dzy' : (env === 'test' ? 'http://es.hlwl.com:20000/dzy' : 'http://es.hlwl.com:20000/dzy'); 
 
 // 创建实例
 const instance = axios.create({
