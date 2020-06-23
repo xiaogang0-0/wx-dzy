@@ -1,4 +1,4 @@
-// 展会详情
+// 展会详情  http://localhost:9000/home_details?id=1272919606905835521&title=%E4%BA%9A%E6%A3%AE%E5%9B%BD%E9%99%85
 <template>
   <div class="home_details">
     <!-- <div v-if="details.enterprise && details.enterprise.id"> -->
@@ -38,12 +38,14 @@
               icon="icon iconfont yz-guanzhu"
               type="default"
               class="btnNone"
+              @click="handleIsFollow(1)"
             >关注</van-button>
             <van-button
               v-show="details.followStatus"
               icon="icon iconfont yz-yiguanzhu"
               type="default"
               class="btnNone"
+              @click="handleIsFollow(0)"
             >已关注</van-button>
             <van-button
               icon="icon iconfont yz-fenxiang"
@@ -109,7 +111,9 @@
       <div class="wrapper" @click.stop>
         <!-- 名片 -->
         <div class="wrapper_cont" v-if="details.enterprise && details.enterprise.id">
-          <img src="@/assets/images/home/detail.png" class="bgImg" alt />
+          <!-- <img src="@/assets/images/home/detail.png" class="bgImg" alt /> -->
+          <img :src="details.enterpriseShow.shareImageUrl" class="bgImg" alt />
+
           <van-row class="wrapper_text">
             <van-col span="24">
               <img :src="details.enterprise.logo" alt="logo" class="logo" />
@@ -184,54 +188,54 @@ export default {
         }
       ],
       details: {
-        mediaList: [
-          {
-            id: 1272913711522246658,
-            enterpriseShowId: 1272919606301855745,
-            enterpriseShowName: "夏季汽配展",
-            mediaUrl:
-              "https://img30.360buyimg.com/popWaterMark/jfs/t1/117113/35/8884/224865/5ed3b7eaE848717a8/bb3a27cfcac3a2e8.jpg",
-            mediaTitle: "测1",
-            mediaType: 1,
-            videoUrl:
-              "https://vod.300hu.com/4c1f7a6atransbjngwcloud1oss/56219e93229189724781699073/v.f30.mp4",
-            remarks: "",
-            showOrder: ""
-          },
-          {
-            id: 1272913711522246659,
-            enterpriseShowId: 1272919606301855745,
-            enterpriseShowName: "夏季汽配展",
-            mediaUrl:
-              "http://himg2.huanqiu.com/attachment2010/2015/0407/10/16/20150407101608259.jpg",
-            mediaTitle: "测2",
-            mediaType: 0,
-            videoUrl: "",
-            remarks: "",
-            showOrder: 100
-          }
-        ],
-        followStatus: 1,
-        enterprise: {
-          id: 1272913711522246658,
-          logo:
-            "https://org.modao.cc/uploads4/images/4826/48266322/v2_qa1ods.jpg",
-          name: "亚森国际",
-          shortName: "亚森"
-        },
-        enterpriseShow: {
-          id: 1272919606301855745,
-          showName: "夏季汽配展",
-          showFormat: 1,
-          provinceName: "河北省",
-          cityName: "石家庄市",
-          planStartDate: "2020-01-16",
-          planEndDate: "2020-01-19",
-          hosts: "中国交通协会",
-          organizer: "亚森国际有限公司",
-          coOrganizer: "北京市交通协会",
-          supportMedia: "一览展会网, 大招网"
-        },
+        // mediaList: [
+        //   {
+        //     id: 1272913711522246658,
+        //     enterpriseShowId: 1272919606301855745,
+        //     enterpriseShowName: "夏季汽配展",
+        //     mediaUrl:
+        //       "https://img30.360buyimg.com/popWaterMark/jfs/t1/117113/35/8884/224865/5ed3b7eaE848717a8/bb3a27cfcac3a2e8.jpg",
+        //     mediaTitle: "测1",
+        //     mediaType: 1,
+        //     videoUrl:
+        //       "https://vod.300hu.com/4c1f7a6atransbjngwcloud1oss/56219e93229189724781699073/v.f30.mp4",
+        //     remarks: "",
+        //     showOrder: ""
+        //   },
+        //   {
+        //     id: 1272913711522246659,
+        //     enterpriseShowId: 1272919606301855745,
+        //     enterpriseShowName: "夏季汽配展",
+        //     mediaUrl:
+        //       "http://himg2.huanqiu.com/attachment2010/2015/0407/10/16/20150407101608259.jpg",
+        //     mediaTitle: "测2",
+        //     mediaType: 0,
+        //     videoUrl: "",
+        //     remarks: "",
+        //     showOrder: 100
+        //   }
+        // ],
+        // followStatus: 1,
+        // enterprise: {
+        //   id: 1272913711522246658,
+        //   logo:
+        //     "https://org.modao.cc/uploads4/images/4826/48266322/v2_qa1ods.jpg",
+        //   name: "亚森国际",
+        //   shortName: "亚森"
+        // },
+        // enterpriseShow: {
+        //   id: 1272919606301855745,
+        //   showName: "夏季汽配展",
+        //   showFormat: 1,
+        //   provinceName: "河北省",
+        //   cityName: "石家庄市",
+        //   planStartDate: "2020-01-16",
+        //   planEndDate: "2020-01-19",
+        //   hosts: "中国交通协会",
+        //   organizer: "亚森国际有限公司",
+        //   coOrganizer: "北京市交通协会",
+        //   supportMedia: "一览展会网, 大招网"
+        // },
       }
     };
   },
@@ -239,7 +243,7 @@ export default {
   created() {
     // 企业id
     this.id = this.$route.query.id;
-    document.title = this.$route.query.title;
+    // document.title = this.$route.query.title;
     // 获取当前年
     this.doHandleYear();
     // 默认刷新列表
@@ -263,12 +267,38 @@ export default {
           let { code, msg, data, total } = res;
           if (code == 200) {
             this.details = data;
+             document.title = this.details.enterprise.name;
+
           }
         })
         .catch(err => {
             this.details = {}
         });
     },
+    // 关注/取消关注  followStatus 1表示关注，0表示取消关注
+    handleIsFollow(followStatus) {
+      let param = {
+        // followStatus 1表示关注，0表示取消关注
+        followStatus: followStatus || '',
+        // 要关注的企业id或人物id
+        followId: this.details.enterprise.id,
+        // 1：关注企业，2：关注人物
+        followType: '1',
+        // 用户openId
+        openId: ''
+      }
+      Api.setIsFollow(param)
+        .then(res => {
+          let { code, msg, data, total } = res;
+          if (code == 200) {
+            Notify({ type: 'success', message: msg });
+          }
+        })
+        .catch(err => {
+            this.details = {}
+        });
+    },
+
     // 分享
     handleShare() {
       this.showShare = true;

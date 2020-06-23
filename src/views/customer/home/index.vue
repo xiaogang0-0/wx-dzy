@@ -215,8 +215,8 @@ export default {
         name: "home_details",
         query: {
           // 企业id
-          id: row.id,
-          title: row.enterpriseName
+          id: row.enterpriseId,
+          // title: row.enterpriseName
         }
       });
     }
