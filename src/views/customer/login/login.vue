@@ -142,13 +142,13 @@ export default {
 
             // 本地缓存
             localStorage.setItem("userInfo", JSON.stringify(res.data));
-            util.setCookie("biw_token", access_token, 365);
+            util.setCookie("dzy_token", access_token, 365);
             util.setCookie("username", username, 365);
             this.$router.push({
               name: "home"
             });
             //  console.log(
-            //     util.getCookie("biw_token"),
+            //     util.getCookie("dzy_token"),
             //     util.getCookie("username"),
             //     util.getCookie("password")
             // )

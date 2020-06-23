@@ -10,26 +10,7 @@
         @play="onPlayerPlay($event)"
         @pause="onPlayerPause($event)"
         @timeupdate="onPlayerTimeupdate($event)"
-      ></video-player>
-
-      <!-- <video-player
-        class="video-player-box"
-        ref="videoPlayer"
-        :options="playerOptions"
-        :playsinline="true"
-        customEventName="customstatechangedeventname"
-        @play="onPlayerPlay($event)"
-        @pause="onPlayerPause($event)"
-        @ended="onPlayerEnded($event)"
-        @waiting="onPlayerWaiting($event)"
-        @playing="onPlayerPlaying($event)"
-        @loadeddata="onPlayerLoadeddata($event)"
-        @timeupdate="onPlayerTimeupdate($event)"
-        @canplay="onPlayerCanplay($event)"
-        @canplaythrough="onPlayerCanplaythrough($event)"
-        @statechanged="playerStateChanged($event)"
-        @ready="playerReadied"
-      ></video-player>-->
+      />
     </div>
   </div>
 </template>
@@ -37,8 +18,9 @@
 <script>
 import { videoPlayer } from "vue-video-player";
 export default {
-  props: ['showVideo', "src"],
-  
+  // playVideoId 当前播放的 id
+  props: ["_id", "playVideoId", "src", "bannerIMG"],
+
   data() {
     return {
       playerOptions: {
@@ -54,11 +36,13 @@ export default {
           {
             type: "video/mp4", // 这里的种类支持很多种：基本视频格式、直播、流媒体等，具体可以参看git网址项目
             // src: require("@/assets/images/video1.mp4") // url地址
-            src: ''
+            src: ""
           }
         ],
-        poster:
-          "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1006505744,1102951372&fm=26&gp=0.jpg", //你的封面地址
+        //你的封面地址
+        poster: "",
+        // poster:
+        //   "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1006505744,1102951372&fm=26&gp=0.jpg",
         width: document.documentElement.clientWidth,
         notSupportedMessage: "此视频暂无法播放，请稍后再试", //允许覆盖Video.js无法播放媒体源时显示的默认信息。
         controlBar: {
@@ -75,34 +59,31 @@ export default {
   },
 
   watch: {
-    // 'showVideo': {
-    //   deep: true,
-    //   handler(newOptions, oldOptions) {
-    //     console.log(newOptions);
-    //     if (newOptions) {
-    //       this.$refs.videoPlayer.player.pause(); // 暂停
-    //     }else {
-    //       this.$emit({'update:showVideo': this.showVideo})
-          
-    //     }
+    // playVideoId(newVal, oldVal) {
+    //   console.log(newVal, "watch");
+    //   if (newVal != this._id) {
+    //     this.$refs.videoPlayer.player.pause(); // 暂停
+    //   } else {
+    //     // this.$refs.videoPlayer.player.play(); // 播放
     //   }
     // }
   },
   created() {
-    this.playerOptions.sources[0].src = this.src
+    // 赋值地址 海报
+    this.playerOptions.sources[0].src = this.src;
+    this.playerOptions.poster = this.bannerIMG;
   },
   methods: {
     // 播放
     onPlayerPlay(player) {
-      console.log("play");
-      // this.showVideo = true 
-      // this.$emit({'update:showVideo': this.showVideo})
+      // console.log(this._id, "play");
+      this.$emit("update:playVideo-id", this._id);
+      // this.$emit("update:", this._id);
       // this.$refs.videoPlayer.player.play(); // 播放
-
     },
     // 暂停
     onPlayerPause(player) {
-      console.log("pause");
+      console.log("暂停");
     },
     // 当前播放位置发生变化时触发。
     onPlayerTimeupdate(player) {

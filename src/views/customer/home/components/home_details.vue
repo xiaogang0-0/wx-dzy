@@ -1,11 +1,12 @@
 // 展会详情
 <template>
   <div class="home_details">
-    <div v-if="details.id">
+    <!-- <div v-if="details.enterprise && details.enterprise.id"> -->
+    <div v-if="details.enterprise && details.enterprise.id">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-        <van-swipe-item v-for="(image, index)  in details.imgList" :key="index">
+        <van-swipe-item v-for="(item, index)  in details.mediaList" :key="index">
           <!-- <router-link :to="{'path':'personal'}"> -->
-          <img :src="image" alt />
+          <img :src="item.mediaUrl" alt />
           <!-- </router-link> -->
         </van-swipe-item>
       </van-swipe>
@@ -13,28 +14,37 @@
       <div class="details_top">
         <van-row class="cont">
           <van-col span="4">
-            <img
-              src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg"
-              alt="logo"
-              class="logo"
-            />
+            <img :src="details.enterprise.logo" alt="logo" class="logo" />
           </van-col>
           <van-col span="20">
             <van-row>
               <van-col span="19">
-                <h2 class="tit">{{ '亚森国际' }}</h2>
+                <h2 class="tit">{{ details.enterprise.name }}</h2>
               </van-col>
               <van-col span="4">
-                <span class="type">{{'仅线下' || '仅线上、仅线下、全包括'}}</span>
+                <span
+                  class="type"
+                >{{ details.enterpriseShow.showFormat ==1 ? '仅线上' : details.enterpriseShow.showFormat == 2 ? '仅线下' : details.enterpriseShow.showFormat == 3 ? '全包括' : ''}}</span>
               </van-col>
-
-              <van-col span="24" class="timer">预计开展日期：{{ '2020.06.23 - 2020.06.30' }}</van-col>
+              <van-col
+                span="24"
+                class="timer"
+              >预计开展日期：{{ details.enterpriseShow.planStartDate + ' - ' + details.enterpriseShow.planEndDate }}</van-col>
             </van-row>
           </van-col>
-
           <van-col span="24" class="text-right">
-            <van-button icon="icon iconfont yz-guanzhu" type="default" class="btnNone">关注</van-button>
-            <van-button icon="icon iconfont yz-yiguanzhu" type="default" class="btnNone">已关注</van-button>
+            <van-button
+              v-show="!details.followStatus"
+              icon="icon iconfont yz-guanzhu"
+              type="default"
+              class="btnNone"
+            >关注</van-button>
+            <van-button
+              v-show="details.followStatus"
+              icon="icon iconfont yz-yiguanzhu"
+              type="default"
+              class="btnNone"
+            >已关注</van-button>
             <van-button
               icon="icon iconfont yz-fenxiang"
               type="default"
@@ -58,21 +68,22 @@
       </div>
       <div class="center_btn">
         <van-grid clickable :border="false" :column-num="3">
-          <van-grid-item to="/">
+          <van-grid-item @click="handleToIntroduce(3)">
+            <!-- <van-grid-item to="/"> -->
             <svg class="icon svg-icon" aria-hidden="true">
               <use xlink:href="#yz-canzhanshangmulu" />
             </svg>
             参展商目录
           </van-grid-item>
 
-          <van-grid-item to="/">
+          <van-grid-item @click="handleToIntroduce(4)">
             <svg class="icon svg-icon" aria-hidden="true">
               <use xlink:href="#yz-zhanhuiricheng" />
             </svg>
             展会日程
           </van-grid-item>
 
-          <van-grid-item to="/">
+          <van-grid-item @click="handleToIntroduce(5)">
             <svg class="icon svg-icon" aria-hidden="true">
               <use xlink:href="#yz-canguanyuyue" />
             </svg>
@@ -83,10 +94,10 @@
           <van-col span="24">
             <h3>承办方</h3>
           </van-col>
-          <van-col span="24">主办单位：{{ '中国交通协会' }}</van-col>
-          <van-col span="24">承办单位：{{ '承办单位：雅森国' }}</van-col>
-          <van-col span="24">协办单位：{{ }}</van-col>
-          <van-col span="24">支持媒体：{{ }}</van-col>
+          <van-col span="24">主办单位：{{ details.enterpriseShow.hosts }}</van-col>
+          <van-col span="24">承办单位：{{ details.enterpriseShow.organizer }}</van-col>
+          <van-col span="24">协办单位：{{ details.enterpriseShow.coOrganizer }}</van-col>
+          <van-col span="24">支持媒体：{{ details.enterpriseShow.supportMedia }}</van-col>
         </van-row>
       </div>
     </div>
@@ -97,25 +108,21 @@
     <van-overlay :show="showShare" @click="showShare = false">
       <div class="wrapper" @click.stop>
         <!-- 名片 -->
-        <div class="wrapper_cont">
+        <div class="wrapper_cont" v-if="details.enterprise && details.enterprise.id">
           <img src="@/assets/images/home/detail.png" class="bgImg" alt />
-          <van-row>
+          <van-row class="wrapper_text">
             <van-col span="24">
-              <img
-                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592312719436&di=a174ad3a0041a8649adb737b7e66816f&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D4006718874%2C3505974745%26fm%3D214%26gp%3D0.jpg"
-                alt="logo"
-                class="logo"
-              />
+              <img :src="details.enterprise.logo" alt="logo" class="logo" />
             </van-col>
             <van-col span="18">
               <van-row>
                 <van-col span="24">
-                  <h3 class="tit">{{ '亚森国际' }}</h3>
+                  <h3 class="tit">{{ details.enterprise.name }}</h3>
                 </van-col>
                 <van-col span="24" class="timer">
                   <div>
                     预计开展日期：
-                    <p>{{ '2020.06.23 - 2020.06.30' }}</p>
+                    <p>{{ details.enterpriseShow.planStartDate + ' - ' + details.enterpriseShow.planEndDate }}</p>
                   </div>
                 </van-col>
               </van-row>
@@ -156,8 +163,11 @@ export default {
   },
   data() {
     return {
+      // 企业id
+      id: '',
       // 当前年
       year: "",
+      // 分享弹窗
       showShare: false,
       options: [
         {
@@ -174,29 +184,67 @@ export default {
         }
       ],
       details: {
-        id: "1",
-        imgList: [
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592222408697&di=4a084fddbef6ee6e0c2f36e3a28f1817&imgtype=0&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D1871768207%2C1897648880%26fm%3D214%26gp%3D0.jpg",
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592212479210&di=67b3ada2b2c47521e7ea2de18d9ffa0b&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn%2Fw640h640%2F20180109%2Fb756-fyqnici7832949.jpg",
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592212531543&di=9d59120aa8b215694e9993b67950027a&imgtype=0&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D1601155093%2C2841826143%26fm%3D214%26gp%3D0.jpg",
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592212565237&di=3e2da936b910826f25cbc121c4fe9e73&imgtype=0&src=http%3A%2F%2Fimg1.imgtn.bdimg.com%2Fit%2Fu%3D3021468801%2C4117927881%26fm%3D214%26gp%3D0.jpg"
-        ]
+        mediaList: [
+          {
+            id: 1272913711522246658,
+            enterpriseShowId: 1272919606301855745,
+            enterpriseShowName: "夏季汽配展",
+            mediaUrl:
+              "https://img30.360buyimg.com/popWaterMark/jfs/t1/117113/35/8884/224865/5ed3b7eaE848717a8/bb3a27cfcac3a2e8.jpg",
+            mediaTitle: "测1",
+            mediaType: 1,
+            videoUrl:
+              "https://vod.300hu.com/4c1f7a6atransbjngwcloud1oss/56219e93229189724781699073/v.f30.mp4",
+            remarks: "",
+            showOrder: ""
+          },
+          {
+            id: 1272913711522246659,
+            enterpriseShowId: 1272919606301855745,
+            enterpriseShowName: "夏季汽配展",
+            mediaUrl:
+              "http://himg2.huanqiu.com/attachment2010/2015/0407/10/16/20150407101608259.jpg",
+            mediaTitle: "测2",
+            mediaType: 0,
+            videoUrl: "",
+            remarks: "",
+            showOrder: 100
+          }
+        ],
+        followStatus: 1,
+        enterprise: {
+          id: 1272913711522246658,
+          logo:
+            "https://org.modao.cc/uploads4/images/4826/48266322/v2_qa1ods.jpg",
+          name: "亚森国际",
+          shortName: "亚森"
+        },
+        enterpriseShow: {
+          id: 1272919606301855745,
+          showName: "夏季汽配展",
+          showFormat: 1,
+          provinceName: "河北省",
+          cityName: "石家庄市",
+          planStartDate: "2020-01-16",
+          planEndDate: "2020-01-19",
+          hosts: "中国交通协会",
+          organizer: "亚森国际有限公司",
+          coOrganizer: "北京市交通协会",
+          supportMedia: "一览展会网, 大招网"
+        },
       }
-      // loading: false,
-      // finished: false,
-      // refreshing: false,
-      // pageSize: 10,
-      // pageNum: 1
     };
   },
 
   created() {
-    this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    // 企业id
     this.id = this.$route.query.id;
     document.title = this.$route.query.title;
-    this.year = this.doHandleYear();
+    // 获取当前年
+    this.doHandleYear();
     // 默认刷新列表
     this.handleGetDetail();
+    alert('二维码,跳转路由,接口')
   },
 
   methods: {
@@ -204,8 +252,22 @@ export default {
     doHandleYear(tYear) {
       var myDate = new Date();
       var tYear = myDate.getFullYear();
-
+      this.year = tYear;
       return tYear;
+    },
+
+    // 请求参数
+    handleGetDetail() {
+      Api.getHomePageDetails(this.$route.query.id)
+        .then(res => {
+          let { code, msg, data, total } = res;
+          if (code == 200) {
+            this.details = data;
+          }
+        })
+        .catch(err => {
+            this.details = {}
+        });
     },
     // 分享
     handleShare() {
@@ -228,6 +290,7 @@ export default {
 
     // 查看公司简介
     handleToIntroduce(type) {
+      console.log(type);
       // 年会展日历
       if (type == 1) {
         this.$router.push({
@@ -246,6 +309,36 @@ export default {
           }
         });
       }
+
+      // 参展商目录
+      if (type == 3) {
+        this.$router.push({
+          name: "home_introduce",
+          query: {
+            id: 1
+          }
+        });
+      }
+
+      // 展会日程
+      if (type == 4) {
+        this.$router.push({
+          name: "home_introduce",
+          query: {
+            id: 1
+          }
+        });
+      }
+
+      // 参观预约
+      if (type == 5) {
+        this.$router.push({
+          name: "home_introduce",
+          query: {
+            id: 1
+          }
+        });
+      }
     },
 
     // 查看详情
@@ -256,20 +349,6 @@ export default {
           inquiryId: _id
         }
       });
-    },
-
-    // 请求参数
-    handleGetDetail() {
-      Api.getHomePageDetails(this.id)
-        .then(res => {
-          let { code, msg, data, total } = res;
-          if (code == 200) {
-            this.banner = data;
-          }
-        })
-        .catch(err => {
-          console.log(err, "err");
-        });
     }
   },
 
@@ -282,7 +361,6 @@ export default {
       }, 0);
     });
   }
-
 };
 </script>
 

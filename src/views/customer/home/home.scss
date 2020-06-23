@@ -1,23 +1,20 @@
 .home {
     position: relative;
     min-height: 100vh;
-    background: #F0F2F5;
-    // background-image: linear-gradient(direction, #fff #C1BAB7);;
-    padding: 0 0.275rem 0.275rem;
-
+    .bgFFF {
+        padding: 0 0.275rem ;
+        background: linear-gradient(to bottom, #fff 0%,#F5F6F8 100%);
+    }
     .head {
         font-size: 0.4rem;
         color: rgba(49, 52, 55, 1);
-        background: rgba(255, 255, 255, 1);
         line-height: 0.74rem;
         text-indent: 0.15rem;
-
         position: relative;
         left: -0.275rem;
         width: 7.5rem;
         text-indent: 0.425rem;
         padding-top: 0.15rem;
-
 
         i {
             display: inline-block;
@@ -26,7 +23,9 @@
             line-height: 0.4rem;
         }
     }
-
+    .content {
+        padding: 0 0.275rem ;
+    }
     .my-swipe {
         margin-bottom: 0.38rem;
         background: rgba(255, 255, 255, 1);
@@ -256,8 +255,9 @@
 
     .wrapper_cont {
         width: 5.96rem;
-        height: 8.62rem;
-        padding: 1.12rem 0.43rem 0.56rem;
+        // height: 8.62rem;
+        height: 7.62rem;
+        padding: 1.12rem 0 0.56rem;
         // padding-top: 1.12rem;
         background: rgba(255, 255, 255, 1);
         border-radius: 0.16rem;
@@ -269,7 +269,9 @@
             // margin-bottom: 2rem;
             margin-bottom: 1.3rem;
         }
-
+        .wrapper_text{
+            padding: 0 0.43rem;
+        }
         .logo {
             width: 0.88rem;
             height: 0.88rem;

@@ -96,4 +96,5 @@ footer 组件的 路由
 播放组件 的暂停
 ```
 
-
+## 临时token
+util.setCookie('dzy_token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTU0Mjg3MzMsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IkMzUWxUQW9nTzQxNEJwLUE1SU9CX1ZjNTR6RSIsImNsaWVudF9pZCI6ImR6eS1jbG91ZC1zaG93LWNsaWVudC0xIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.JzRnqIly2A9F--sd8iAAFpBr-7HBIYvTKr Y1AusD59U',365)

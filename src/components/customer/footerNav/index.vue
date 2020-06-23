@@ -29,16 +29,16 @@ export default {
           path: "personal"
         },
         {
-          ico: "search",
+          ico: "icon iconfont yz-ziyuan",
           name: "search",
           lable: "资源",
           // 路由
           path: "personal"
         },
         {
-          ico: "search",
+          ico: "icon iconfont yz-wode",
           name: "my",
-          lable: "我的",
+          lable: "身份",
           // 路由
           path: "personal"
         }

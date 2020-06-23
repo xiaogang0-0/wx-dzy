@@ -43,11 +43,14 @@ instance.interceptors.request.use(config => {
         // config.data = qs.stringify(config.data);
     // }
 
+    // 暂时设置临时的token  调取接口用
+    util.setCookie('dzy_token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTU0Mjg3MzMsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IkMzUWxUQW9nTzQxNEJwLUE1SU9CX1ZjNTR6RSIsImNsaWVudF9pZCI6ImR6eS1jbG91ZC1zaG93LWNsaWVudC0xIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.JzRnqIly2A9F--sd8iAAFpBr-7HBIYvTKr Y1AusD59U',365) 
+
     // 统一携带tooken
-    if(util.getCookie('biw_token')){
+    if(util.getCookie('dzy_token')){
         config.headers =  {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + util.getCookie('biw_token')
+            'Authorization': 'Bearer ' + util.getCookie('dzy_token')
         };
     }
     return config

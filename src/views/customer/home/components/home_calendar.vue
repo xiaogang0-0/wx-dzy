@@ -5,8 +5,17 @@
       <img src="@/assets/images/home/head.png" alt />
     </div>
 
-    <van-tabs v-model="active" scrollspy sticky @click="onClick">
-      <van-tab v-for="(item,index) in details" :key="index" :title="item.monthDesc"></van-tab>
+    <van-tabs v-model="active" @click="onClick" :border="false">
+      <van-tab v-for="(item,index) in details" :key="index" :disabled="item.enterpriseShowCalendarList.length ? false : true">
+        <!-- <van-tab v-for="(item,index) in details" :key="index" :title=""> -->
+        <template #title>
+          <span
+            v-if="item.enterpriseShowCalendarList && item.enterpriseShowCalendarList.length"
+            class="sta"
+          >有展</span>
+          {{ item.monthDesc }}
+        </template>
+      </van-tab>
     </van-tabs>
     <!-- 占位图 -->
     <img
@@ -42,15 +51,10 @@
                 <div class="item-footer">
                   <p class="like-total clear">
                     地点：{{obj.liked}}
-                    <span class="status">{{ '仅线下' || '仅线上' || '线上/线下'}}</span>
                     <span
                       class="status"
-                      :class="true ? 'style1' : ''"
-                    >{{ '仅线下' || '仅线上' || '线上/线下'}}</span>
-                    <span
-                      class="status"
-                      :class="true ? 'style2' : ''"
-                    >{{ '仅线下' || '仅线上' || '线上/线下'}}</span>
+                      :class="obj.showFormat == 1 ? 'style1' : obj.showFormat == 2 ? 'style2' :  ''"
+                    >{{ obj.showFormat == 1 ? '仅线上' : obj.showFormat == 2 ? '仅线下' : obj.showFormat == 3 ? '线上/线下' : ''}}</span>
                   </p>
                 </div>
               </div>
@@ -137,7 +141,7 @@ export default {
               mediaDuration: "02:22",
               provinceName: "",
               cityName: "",
-              showFormat: 1
+              showFormat: ""
             }
           ]
         },
@@ -175,7 +179,7 @@ export default {
               mediaDuration: "",
               provinceName: "北京",
               cityName: "北京",
-              showFormat: 2
+              showFormat: 3
             }
           ]
         },
@@ -225,6 +229,20 @@ export default {
   computed: {},
 
   methods: {
+    // 获取详情
+    handleDetails() {
+      let param = { enterpriseId: 11 };
+      Api.getCalendarListByEnterpriseId(param)
+        .then(res => {
+          let { code, msg, data, total } = res;
+          if (code == 200) {
+            this.details = data;
+          }
+        })
+        .catch(err => {
+          this.details = [];
+        });
+    },
     onClick(name, title) {
       console.log(name, title);
       this.itemList = this.details[name];
@@ -362,8 +380,8 @@ export default {
     this.inquiryId = this.$route.query.inquiryId;
     document.title = this.$route.query.title;
     this.year = this.doHandleYear();
-    // 默认刷新列表
-    // this.onSearch();
+    // 获取默认数据
+    this.handleDetails();
   }
 };
 </script>
@@ -398,14 +416,14 @@ export default {
           font-size: 0.2rem;
           color: rgba(0, 0, 0, 1);
           line-height: 0.28rem;
-          background: rgba(193, 232, 238, 1);
+          background: rgba(248, 213, 126, 1);
           border-radius: 0.08rem;
         }
         .status.style1 {
           background: rgba(223, 216, 247, 1);
         }
         .status.style2 {
-          background: rgba(248, 213, 126, 1);
+          background: rgba(193, 232, 238, 1);
         }
       }
     }
@@ -425,6 +443,20 @@ export default {
   }
   .van-tab--active {
     color: #0091ff;
+  }
+  .van-tabs__line {
+    background-color: #f8d57e;
+  }
+  .sta {
+    position: absolute;
+    right: -0.07rem;
+    top: 0.1rem;
+    padding: 0 0.04rem;
+    font-size: 0.16rem;
+    color: rgba(49, 52, 55, 1);
+    line-height: 0.26rem;
+    background: rgba(248, 213, 126, 1);
+    border-radius: 0.13rem;
   }
 }
 </style>
