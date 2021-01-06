@@ -15,7 +15,7 @@
         "@fullcalendar/daygrid": "^4.4.2",
         "@fullcalendar/interaction": "^4.4.2",
         "@fullcalendar/vue": "^4.4.2",
-        "axios": "^0.18.0",
+        "axios": "^0.21.1",
         "babel-plugin-syntax-dynamic-import": "^6.18.0",
         "core-js": "^2.6.5",
         "echarts": "^4.2.1",
